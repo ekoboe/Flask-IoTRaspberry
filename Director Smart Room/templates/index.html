@@ -1,0 +1,273 @@
+{% extends 'base.html' %}
+{% include 'layout.html' %}
+{% block title %} Dashboard {% endblock %}
+{% block nav_item_index %} active {% endblock %}
+{% block content %}
+
+<!-- small box -->
+<div class="container">
+    <div class="row">
+        <div class="col-6 md-4 order-0">
+            <div class="card">
+                <div class="d-flex align-items-end row">
+                    <div class="col-sm-7">
+                        <div class="card-body" style="height: 160px;">
+                            <h5 class="card-title text-primary">Welcome {{session.username}} !! </h5>
+                            <br>
+                            <p class="mb-4">
+                                <div id="greeting">{{ greet }}</div>
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-5 text-center text-sm-left">
+                        <div class="card-body pb-0 px-0 px-md-4">
+                            <img src="../static/dist/img/man-with-laptop-light.png" height="100"
+                                 alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                                 data-app-light-img="illustrations/man-with-laptop-light.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 mb-4 order-0">
+            <div class="card bg-primary">
+                <div class="d-flex align-items-end row">
+                    <div class="col-sm-7">
+                        <div class="card-body">
+                            <div class='mirror-top-container'>
+                                <div class='weather-top-container'>
+                                    <div class='upper-weather-container'>
+                                        <div class='weather-current-temp'></div>
+                                        <div class='weather-current-icon'><img src="" id='weather-current-img'></div>
+                                    </div>
+                                    <!--                        <div class='weather-current-title'></div>-->
+                                    <div class='weather-current-desc'></div>
+                                </div>
+                                <div class='time-top-container' id='time-top-container'>
+                                    <div class='time-top' id='time-top'></div>
+                                    <div class='time-mid' id='time-mid'></div>
+                                    <div class='time-bottom' id='time-bottom'></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    <div class="row">-->
+<!--        <div class="col-4 md-4 order-0">-->
+<!--            <div class="card" style="height: 150px; width:120px">-->
+<!--                <div class="pintu">-->
+<!--                    <div class="card-body">-->
+<!--                        <div class="label">-->
+<!--                            <p>{% if door == 1 %} OPEN-->
+<!--                                {% else %} CLOSE-->
+<!--                                {% endif %}</p>-->
+<!--                        </div>-->
+<!--                        <div class="icon">-->
+<!--                            <i class="fa fa-home fa-3x text-primary"></i>-->
+<!--                        </div>-->
+<!--                        <p>PINTU</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-4 md-4 order-0">-->
+<!--            <div class="card">-->
+<!--                <div class="card-body" style="height: 120px;">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-4 md-4 order-0">-->
+<!--            <div class="card">-->
+<!--                <div class="card-body" style="height: 120px;">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-4 md-4 order-0">-->
+<!--            <div class="card">-->
+<!--                <div class="card-body" style="height: 120px;">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-4 md-4 order-0">-->
+<!--            <div class="card">-->
+<!--                <div class="card-body" style="height: 120px;">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-4 md-4 order-0">-->
+<!--            <div class="card">-->
+<!--                <div class="card-body" style="height: 120px;">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            {% if door == 1 %}
+            <div class="small-box bg-primary">
+                {% else %}
+                <div class="kotakstatuslampuon"></div>
+                <div class="small-box bg-light">
+                    {% endif %}
+                    <div class="inner">
+                        <h3>Pintu</h3>
+                        <p>Status : {% if door == 1 %} Terbuka
+                            {% else %} Tertutup
+                            {% endif %}</p>
+                    </div>
+                    <div class="icon">
+                        {% if door == 1 %} <i class="ion ion-home text-light"></i>
+                        {% else %} <i class="ion ion-home text-primary"></i>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                {% if brankas == 1 %}
+                <div class="kotakstatuslampuoff"></div>
+                <div class="small-box bg-primary">
+                    {% else %}
+                    <div class="kotakstatuslampuon"></div>
+                    <div class="small-box bg-light">
+                        {% endif %}
+                        <div class="inner">
+                            <h3>Brankas</h3>
+                            <p>Status : {% if brankas== 1 %} Terbuka
+                                {% else %} Tertutup
+                                {% endif %}</p>
+                        </div>
+                        <div class="icon">
+                            {% if brankas== 1 %} <i class="ion ion-locked text-light"></i>
+                            {% else %} <i class="ion ion-locked text-primary"></i>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    {% if lampu == 1 %}
+                    <div class="kotakstatuslampuoff"></div>
+                    <div class="small-box bg-primary">
+                        {% else %}
+                        <div class="kotakstatuslampuon"></div>
+                        <div class="small-box bg-light">
+                            {% endif %}
+                            <div class="inner">
+                                <h3>Lampu</h3>
+                                <p>Status : {% if lampu == 1 %} Nyala
+                                    {% else %} Mati
+                                    {% endif %}</p>
+                            </div>
+                            <div class="icon">
+                                {% if lampu == 1 %} <i class="ion ion-lightbulb text-light"></i>
+                                {% else %} <i class="ion ion-lightbulb text-primary"></i>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        {% if door == 1 %}
+                        <div class="kotakstatuslampuoff"></div>
+                        <div class="small-box bg-primary" style="height: 100px;">
+                            {% else %}
+                            <div class="kotakstatuslampuon"></div>
+                            <div class="small-box bg-light" style="height: 100px;">
+                                {% endif %}
+                                <div class="inner">
+                                    <h3>Power</h3>
+                                    <p>Status : {% if door== 1 %} Nyala
+                                    {% else %} Mati
+                                    {% endif %}</p>
+                                </div>
+                                <div class="icon">
+                                    {% if door == 1 %} <i class="ion ion-battery-charging text-light"></i>
+                                    {% else %} <i class="ion ion-battery-charging text-primary"></i>
+                                    {% endif %}
+                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            {% if door == 1 %}
+                            <div class="kotakstatuslampuoff"></div>
+                            <div class="small-box bg-primary">
+                                {% else %}
+                                <div class="kotakstatuslampuon"></div>
+                                <div class="small-box bg-light">
+                                    {% endif %}
+                                    <div class="inner">
+                                        <h3>AC</h3>
+                                        <p>Status : {% if door == 1 %} Nyala
+                                            {% else %} Mati
+                                            {% endif %}</p>
+                                    </div>
+                                    <div class="icon">
+                                        {% if door == 1 %} <i class="ion ion-thermometer text-light"></i>
+                                        {% else %} <i class="ion ion-thermometer text-primary"></i>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-6">
+                                {% if door == 1 %}
+                                <div class="kotakstatuslampuoff"></div>
+                                <div class="small-box bg-primary">
+                                    {% else %}
+                                    <div class="kotakstatuslampuon"></div>
+                                    <div class="small-box bg-light">
+                                        {% endif %}
+                                        <div class="inner">
+                                            <h3>Usage</h3>
+                                            <p>
+                                        </p>
+                                        </div>
+                                        <div class="icon">
+                                            {% if door == 1 %} <i class="ion ion-cash text-light"></i>
+                                            {% else %}<i class="ion ion-cash text-primary"></i>
+                                            {% endif %}
+                                        </div>
+                                        <a href="/usage" class="small-box-footer">More info 
+                                        <i class="fas fa-arrow-circle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Monitor Lampu</h2>
+                        </div>
+                        <div class="card-header">
+                            <h6 class="card-title">Status {{led}}</h6>
+                        </div>
+                        <div class="card-body">
+                            <td>
+                                <button type="button" class="btn btn-block btn-primary">Lamp 1</button>
+                            </td>
+                            <br>
+                            <a href="/led/on" class="btn btn-app bg-success">
+                                <i class="fa fa-toggle-on"></i> ON
+                            </a>
+                            <a href="/led/off" class="btn btn-app bg-danger">
+                                <i class="fa fa-toggle-off"></i> OFF
+                            </a>
+                        </div>
+                    </div>
+                    -->
+                    {% block chart %} {% endblock %}
+                    {% endblock %}
+

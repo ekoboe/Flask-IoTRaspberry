@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %} User {% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+<div class="row">
+
+    <div class="col">
+        <div class="small-box bg-primary">
+            <div class="inner">
+              <h3>Find <br>Fingerprint</h3>
+              <p></p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-search text-light"></i>
+            </div>
+            <a href="/find" class="small-box-footer" data-toggle="modal" data-target="#modalfind">Find <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+    </div>
+
+  <div class="col">
+    <div class="small-box bg-primary">
+        <div class="inner">
+          <h3>Enroll <br>Fingerprint</h3>
+          <p></p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-android-add text-light"></i>
+        </div>
+        <a href="/enrollf" class="small-box-footer">Create <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+  </div>
+
+  <div class="col">
+    <div class="small-box bg-primary">
+        <div class="inner">
+          <h3>Delete <br>Fingerprint</h3>
+          <p></p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-android-delete text-light"></i>
+        </div>
+        <a href="/del" class="small-box-footer"> Delete <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+  </div>
+
+ 
+  
+</div>
+
+<div class="col-12 col-md-8"> 
+<div class="small-box bg-light" style="height: 210px;">
+        <div class="inner">
+          <h2>Delete template</h2>   
+          <form action="/delete" method="post">
+          <input type="number" step="1" min="1" max="127" class="form-control" placeholder="Input template" name="template">
+          <br>
+          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete ?')">
+          <span class="fa fa-trash"> </span> Delete</button>
+          </form>
+          <hr>
+          <p>{% for mesg in get_flashed_messages() %}
+      <h4>{{ mesg }}</h4>
+      {% endfor %}</p>
+        </div>
+        
+       
+      </div>
+  </div>
+</div>
+
+</div>
+
+{% block chart %} {% endblock %}
+  {% endblock %}
+

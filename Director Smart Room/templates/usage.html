@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% block title %} Usage  {% endblock %}
+{% block nav_item_usage %} active {% endblock %}
+{% block content %}
+
+<div class="container">
+<div class="row">
+<div class="col-12">
+    <div class="card card-info">
+        <div class="card-header">
+          <h3 class="card-title">Chart</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart">
+            <canvas id="myChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+
+<div class="col-12">
+    <div class="card card-success">
+        <div class="card-header">
+          <h3 class="card-title">Chart</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart">
+            {% if lampu == 1 %} <canvas id="Chartku" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+            {% else %} <canvas id="myChart2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+            {% endif %}
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      
+<script>
+    const ctx = document.getElementById('myChart');
+    const myChart = new Chart(ctx, {
+        type: 'bar', 
+        data: {
+            labels:{{create | safe}},
+            datasets: [{
+                label: 'Penggunaan Daya',
+                data: {{ daya }},
+                fill: true,
+                backgroundColor:'rgb(0,0,255)',
+                borderColor:'rgb(0,0,255)',
+                borderWidth: 0.1
+            },
+            {
+                label: 'Total',
+                data: {{ total }},
+                fill: false,
+                backgroundColor:'rgb(0,255,0)',
+                borderColor:'rgb(0,255,0)',
+                borderWidth: 0.1
+            },
+            {
+                label: 'kwh',
+                data: {{ kwh }},
+                fill: true,
+                backgroundColor:'rgb(255,0,0)',
+                borderColor:'rgb(255,0,0)',
+                borderWidth: 0.1
+            },
+            {
+                label: 'Rupiah',
+                data: {{ rupiah }},
+                fill: true,
+                backgroundColor:'rgb(255,255,0)',
+                borderColor:'rgb(255,255,0)',
+                borderWidth: 0.1
+            }]
+            
+        },
+        options: {
+          responsive: true
+        }
+    });
+  </script>
+  
+<script>
+    const ctp = document.getElementById('myChart2');
+    const myChart2 = new Chart(ctp, {
+        type: 'bar', 
+        data: {
+            labels:{{create | safe}},
+            datasets: [{
+                label: 'Penggunaan Daya',
+                data: {{ daya }},
+                fill: true,
+                backgroundColor:'rgb(0,0,255)',
+                borderColor:'rgb(0,0,255)',
+                borderWidth: 0.1
+            },
+            {
+                label: 'Total',
+                data: {{ total }},
+                fill: false,
+                backgroundColor:'rgb(0,255,0)',
+                borderColor:'rgb(0,255,0)',
+                borderWidth: 0.1
+            },
+            {
+                label: 'kwh',
+                data: {{ kwh }},
+                fill: true,
+                backgroundColor:'rgb(255,0,0)',
+                borderColor:'rgb(255,0,0)',
+                borderWidth: 0.1
+            },
+            {
+                label: 'Rupiah',
+                data: {{ rupiah }},
+                fill: true,
+                backgroundColor:'rgb(255,255,0)',
+                borderColor:'rgb(255,255,0)',
+                borderWidth: 0.1
+            }]
+            
+        },
+        options: {
+          responsive: true
+        }
+    });
+  </script>
+  
+<script>
+    const cto = document.getElementById('Chartku');
+    const Chartku = new Chart(cto, {
+        type: 'bar', 
+        data: {
+            labels:{{create | safe}},
+            datasets: [{
+                label: 'Lampu',
+                data: {{ dayalampu }},
+                fill: true,
+                backgroundColor:'rgb(178, 102, 255)',
+                borderColor:'rgb(178, 102, 255)',
+                borderWidth: 0.1
+            },
+            {
+                label: 'AC',
+                data: {{ dayaac }},
+                fill: true,
+                backgroundColor:'rgb(255, 153, 51)',
+                borderColor:'rgb(255, 153, 51)',
+                borderWidth: 0.1
+            },
+            {
+                label: 'Power Supply',
+                data: {{ dayapower }},
+                fill: true,
+                backgroundColor:'rgb(153, 204, 255)',
+                borderColor:'rgb(153, 204, 255)',
+                borderWidth: 0.1
+            }]
+            
+        },
+        options: {
+          responsive: true
+        }
+    });
+  </script>
+  
+ 
+ </div>
+ </div>
+{% block chart %} {% endblock %}
+
+<div class="col-12">
+    <div class="card card-warning">
+        <div class="card-header">
+          <h3 class="card-title">Tabel Data</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+        <table class="table table-bordered table-striped" style="width:100%; table-layout:fixed;">
+        <thead>
+            <tr>
+            <th style="text-align:center">Start</th>
+            <th style="text-align:center">End</th>
+            <th style="text-align:center">Total</th>
+            <th style="text-align:center">Daya</th>
+            <th style="text-align:center">kWh</th>
+            <th style="text-align:center">Rupiah</th>
+         </tr>
+         </thead>
+         <tbody>
+              
+         {% for row in smartroom %}
+         <tr>
+             <td style="text-align:center">{{row.first}}</td>
+             <td style="text-align:center">{{row.later}}</td>
+             <td style="text-align:center">{{row.total}}</td>
+             <td style="text-align:center">{{row.daya}}</td>
+             <td style="text-align:center">{{row.kwh}}</td>
+             <td style="text-align:center"> Rp {{row.rupiah}}</td>
+         </tr>
+             {% endfor %}
+         </tbody>
+         </table>
+         </div>
+        <!-- /.card-body -->
+      </div>
+{% endblock %}

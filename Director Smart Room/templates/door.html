@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %} Rolling door {% endblock %}
+{% block nav_item_door %} active {% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <div class="icon">
+                        {% if door == 1 %}  <i class="fas fa-door-open fa-4x text-primary"></i>
+                        {% else %}  <i class="fas fa-door-closed fa-4x text-dark"></i>
+                        {% endif %}
+                       
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <p class="card-text">Scan finger to open the door.</p>
+                    <a href="/nyala" class="btn btn-success">Scan finger</a>
+                </div>
+                <div class="card-body">
+
+                    <p class="card-text">Press this button to close the door.</p>
+                    <!--<a href="/mati" class="btn btn-warning">Scan finger</a> -->
+                    <a href="/matibutton" class="btn btn-danger">OFF</a>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col">
+            <div class="small-box bg-light" style="height: 200px;">
+                <div class="inner">
+                    <p>
+                    <h3>Status pintu : <br> {% if door == 1 %} Terbuka
+                        {% else %} Tertutup
+                        {% endif %}</h3></p>
+                    <p>{% for mesg in get_flashed_messages() %}
+                    <h4>{{ mesg }}</h4>
+                    {% endfor %}</p> 
+                </div>
+                <div class="icon">
+                       {% if door == 1 %} <i class="ion ion-android-unlock text-primary"></i>
+                       {% else %}  <i class="ion ion-android-lock text-dark"></i>
+                       {% endif %}
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% block chart %} {% endblock %}
+    {% endblock %}

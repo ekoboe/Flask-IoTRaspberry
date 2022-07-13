@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block title %} User {% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+<div class="row">
+
+    <div class="col">
+        <div class="small-box bg-info">
+            <div class="inner">
+              <h2>Find <br>Fingerprint</h2>
+              <p></p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-search"></i>
+            </div>
+            <a href="/find" class="small-box-footer" data-toggle="modal" data-target="#modalfind">Find <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+    </div>
+    <div id="modalfind" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title-center">Letakkan jari pada sensor fingerprint</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <center>
+                                    <img src="../static/dist/img/fingerprint.png" width="50%" height="50%">
+                                    <h2>Find Fingerprint</h2>
+                                        </center>
+                                    <div class="modal-footer">
+                                    <form action="/find">
+                                    <button type="submit" class="btn btn-primary">Scan Now</button>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       </div>
+
+  <div class="col">
+    <div class="small-box bg-success">
+        <div class="inner">
+          <h2>Enroll <br>Fingerprint</h2>
+          <p></p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-android-add"></i>
+        </div>
+        <a href="/enrollf" class="small-box-footer" data-toggle="modal" data-target="#modalenroll">Create <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+  </div>
+  <div id="modalenroll" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title-center">Letakkan jari pada sensor fingerprint</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <center>
+                                    <img src="../static/dist/img/fingerprint.png" width="50%" height="50%">
+                                    <h2>Enroll Fingerprint</h2>
+                                        </center>
+                                    <div class="modal-footer">
+                                    <form action="/enrollf">
+                                    <button type="submit" class="btn btn-primary">Scan Now</button>
+                                        <!--<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
+                                    <form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       </div>
+
+  <div class="col">
+    <div class="small-box bg-danger">
+        <div class="inner">
+          <h2>Delete <br>Fingerprint</h2>
+          <p></p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-android-delete"></i>
+        </div>
+        <a href="/del" class="small-box-footer">Delete <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+  </div>
+  
+</div>
+
+<div class="col-12 col-md-8"> 
+<div class="small-box bg-light" style="height: 170px;">
+        <div class="inner">
+          <h2>Find Template</h2>
+          <p>{% for mesg in get_flashed_messages() %}
+      <h4>{{ mesg }}</h4>
+      {% endfor %}</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-android-search"></i>
+        </div>
+       
+      </div>
+  </div>
+</div>
+
+</div>
+
+{% block chart %} {% endblock %}
+  {% endblock %}

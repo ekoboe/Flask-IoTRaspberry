@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DIRECTOR SMART ROOM | Log in</title>
+	<link rel="stylesheet" type="text/css" href="../static/style3.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script>
+      $( function() {
+      $( document ).tooltip();
+      } );
+
+    </script>
+</head>
+<body>
+	<img class="wave"src="/static/dist/img/w.png">
+	<div class="container">
+		<div class="img">
+			<img src="/static/dist/img/4195174.png">
+		</div>
+		<div class="login-content">
+			<form action="" method="post">
+				<img src="/static/dist/img/undraw_Fingerprint_re_uf3f.png">
+				<h2 class="title">Director Smart Room</h2>
+				{% with messages = get_flashed_messages(with_categories=true) %}
+				{% if messages %}
+					{% for category, message in messages %}
+					<li class="alert alert-{{ category }}">{{ message }}</li>
+					{% endfor %}
+				{% endif %}
+				{% endwith %}
+				
+				<form action="" method="post">
+				{{ form.hidden_tag() }}
+				<div class="input-div one">
+					<div class="i">
+           		   		<i class="fas fa-envelope"></i>
+           		   </div>
+           		   <div class="div">
+                     <input type="email" class="form-control" placeholder="Email" {{ form.email }}
+           		   		
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i">
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<input type="password" class="form-control" placeholder="Password" {{ form.password }}
+            	   </div>
+            	</div>
+            	<a href="/formRegister">Register</a>
+            	<input type="submit" class="btn btn-primary btn-block" {{ form.submit }}
+            	           	
+            	</div>
+            </form>
+			</form>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/main3.js"></script>
+</body>
+</html>

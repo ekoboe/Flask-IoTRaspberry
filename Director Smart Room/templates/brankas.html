@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %} Brankas {% endblock %}
+{% block nav_item_brankas %} active {% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <div class="icon">
+                        {% if brankas == 1 %}  <i class="fas fa-unlock fa-4x text-primary"></i>
+                        {% else %} <i class="fas fa-lock fa-4x text-dark"></i>
+                        {% endif %}  
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <p class="card-text">Scan finger to open the brankas.</p>
+                    <a href="/nyalabrankas" class="btn btn-success">Scan finger</a>
+                </div>
+                <div class="card-body">
+
+                    <p class="card-text">Press this button to close the brankas.</p>
+                    <!-- <a href="/matibrankas" class="btn btn-warning">Scan finger</a> -->
+                    <a href="/matibutton2" class="btn btn-danger">OFF</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="col">
+            <div class="small-box bg-light" style="height: 200px;">
+                <div class="inner">
+                    <p>
+                    <h3>Status brankas : <br> {% if brankas == 1 %} Terbuka
+                        {% else %} Tertutup
+                        {% endif %}</h3></p>
+                    <p>{% for mesg in get_flashed_messages() %}
+                    <h4>{{ mesg }}</h4>
+                    {% endfor %}</p>
+                </div>
+                <div class="icon">
+                        {% if brankas == 1 %}  <i class="ion ion-android-unlock text-primary"></i>
+                        {% else %}  <i class="ion ion-android-lock fa-4x text-dark"></i>
+                        {% endif %}
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% block chart %} {% endblock %}
+    {% endblock %}

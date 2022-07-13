@@ -1,0 +1,32 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family:'Gill Sans', 'Gill Sans MT',
+    Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background: #ffa12c;
+}
+
+login-box{
+    width:100%;
+    display:flex;
+    max-width:850px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}
+
+.right img{
+    width:450px;
+    height:100%;
+    border-top-right-radius:15px;
+    border-bottom-right-radius:15px;
+}
+
